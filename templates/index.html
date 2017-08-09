@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <title>NinjaGold</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style00.css')}}">
+    <!-- <link rel='stylesheet' type='text/css' href='style.css' /> -->
+</head>
+  <body>
+    <div class="row">
+       <h3>Your Gold: {{total}}</h3>
+       <form action="/reset" method="POST" class="reset">
+           <input type="submit" name="submit" value="Reset gold" />
+       </form>
+   </div>
+   <div class="row">
+       <div class="place">
+           <h3>Farm</h3>
+           <p>Check the Pigs</p>
+           <form action="/process_money" method="POST">
+               <input type="hidden" name="hidden" value="farm"/>
+               <input type="submit" name="submit" value="Find Gold!"/>
+           </form>
+       </div>
+       <div class="place">
+           <h3>Cave</h3>
+           <p>Do you dare enter??</p>
+           <form action="/process_money" method="POST">
+               <input type="hidden" name="hidden" value="cave"/>
+               <input type="submit" name="submit" value="Find Gold!"/>
+           </form>
+       </div>
+       <div class="place">
+           <h3>House</h3>
+           <p>Couch Change</p>
+           <form action="/process_money" method="POST">
+               <input type="hidden" name="hidden" value="house"/>
+               <input type="submit" name="submit" value="Find Gold!"/>
+           </form>
+       </div>
+       <div class="place">
+           <h3>Casino</h3>
+           <p>Feeling Lucky Punk?</p>
+           <form action="/process_money" method="POST">
+               <input type="hidden" name="hidden" value="casino"/>
+               <input type="submit" name="submit" value="Find Gold!"/>
+           </form>
+       </div>
+   </div>
+   <div class="row">
+     	<h4>Activities:</h4>
+       <div class="activities">
+           {% if session['activity'] %}
+             {% for activity in session['activity'] %}
+               {% if 'Win' not in activity %}
+                 <p class='lose'>{{ activity }}</p>
+               {% else %}
+                 <p class='win'>{{ activity }}</p>
+               {% endif %}
+             {% endfor %}
+           {% endif %}
+         </div>
+
+       </div>
+   </div>
+  </body>
+</html>
